@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>YouTube AI Blocker</title>
+</head>
+<body>
+  <div class="popup">
+    <header class="header">
+      <div class="header-icon">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="#ff9100">
+          <path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/>
+        </svg>
+      </div>
+      <h1 class="header-title">YouTube AI Detector</h1>
+    </header>
+
+    <section class="card">
+      <p class="card-label">Show on pages</p>
+      <div class="page-grid">
+        <label class="page-chip" for="toggle-home">
+          <input type="checkbox" id="toggle-home" checked>
+          <span class="chip-text">Home</span>
+        </label>
+        <label class="page-chip" for="toggle-search">
+          <input type="checkbox" id="toggle-search" checked>
+          <span class="chip-text">Search</span>
+        </label>
+        <label class="page-chip" for="toggle-watch">
+          <input type="checkbox" id="toggle-watch" checked>
+          <span class="chip-text">Watch</span>
+        </label>
+        <label class="page-chip" for="toggle-shorts">
+          <input type="checkbox" id="toggle-shorts" checked>
+          <span class="chip-text">Shorts</span>
+        </label>
+        <label class="page-chip" for="toggle-subs">
+          <input type="checkbox" id="toggle-subs" checked>
+          <span class="chip-text">Subs</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <p class="card-label">Button theme</p>
+      <div class="theme-picker" id="theme-picker">
+        <button class="theme-swatch" data-theme="default" title="Default">
+          <span class="swatch-fill swatch-default"></span>
+          <span class="swatch-name">Default</span>
+        </button>
+        <button class="theme-swatch" data-theme="neon" title="Neon">
+          <span class="swatch-fill swatch-neon"></span>
+          <span class="swatch-name">Neon</span>
+        </button>
+        <button class="theme-swatch" data-theme="stealth" title="Stealth">
+          <span class="swatch-fill swatch-stealth"></span>
+          <span class="swatch-name">Stealth</span>
+        </button>
+        <button class="theme-swatch" data-theme="toxic" title="Toxic">
+          <span class="swatch-fill swatch-toxic"></span>
+          <span class="swatch-name">Toxic</span>
+        </button>
+        <button class="theme-swatch" data-theme="custom" title="Custom">
+          <span class="swatch-fill swatch-custom" id="swatch-custom-fill"></span>
+          <span class="swatch-name">Custom</span>
+        </button>
+      </div>
+
+      <div class="custom-colors" id="custom-colors">
+        <div class="color-row">
+          <label>Flagged color</label>
+          <input type="color" id="color-flagged" value="#ff9100">
+        </div>
+        <div class="color-row">
+          <label>Reported color</label>
+          <input type="color" id="color-reported" value="#f44336">
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="mailto:lukasdzn1@gmail.com?subject=YouTube%20AI%20Blocker%20Feedback" class="footer-link">Suggest a feature</a>
+        <span class="footer-dot">·</span>
+        <a href="https://www.buymeacoffee.com/lukasdzn" target="_blank" class="footer-link">Buy me a coffee</a>
+      </div>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

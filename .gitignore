@@ -1,0 +1,21 @@
+# Rust
+backend/target/
+**/*.rs.bk
+
+# Environment
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Extension generated PNGs (rebuild from icon.svg)
+# extension/icons/*.png

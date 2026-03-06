@@ -1,0 +1,332 @@
+/* ---------- Theme Variables ---------- */
+
+#yab-report-container {
+  --yab-flagged-bg: rgba(230, 81, 0, 0.12);
+  --yab-flagged-bg-hover: rgba(230, 81, 0, 0.22);
+  --yab-flagged-text: #ff9100;
+  --yab-flagged-border: rgba(255, 145, 0, 0.45);
+  --yab-flagged-border-hover: rgba(255, 145, 0, 0.65);
+  --yab-reported-text: #f44336;
+  --yab-reported-bg: rgba(244, 67, 54, 0.15);
+  --yab-reported-bg-hover: rgba(244, 67, 54, 0.25);
+  --yab-reported-border: rgba(244, 67, 54, 0.4);
+  --yab-reported-border-hover: rgba(244, 67, 54, 0.6);
+  --yab-hover-text: #f44336;
+}
+
+#yab-report-container[data-theme="neon"] {
+  --yab-flagged-bg: rgba(0, 184, 212, 0.12);
+  --yab-flagged-bg-hover: rgba(0, 184, 212, 0.22);
+  --yab-flagged-text: #00e5ff;
+  --yab-flagged-border: rgba(0, 229, 255, 0.45);
+  --yab-flagged-border-hover: rgba(0, 229, 255, 0.65);
+  --yab-reported-text: #ff4081;
+  --yab-reported-bg: rgba(255, 64, 129, 0.15);
+  --yab-reported-bg-hover: rgba(255, 64, 129, 0.25);
+  --yab-reported-border: rgba(255, 64, 129, 0.4);
+  --yab-reported-border-hover: rgba(255, 64, 129, 0.6);
+  --yab-hover-text: #ff4081;
+}
+
+#yab-report-container[data-theme="stealth"] {
+  --yab-flagged-bg: rgba(255, 255, 255, 0.1);
+  --yab-flagged-bg-hover: rgba(255, 255, 255, 0.2);
+  --yab-flagged-text: #f1f1f1;
+  --yab-flagged-border: transparent;
+  --yab-flagged-border-hover: transparent;
+  --yab-reported-text: #f1f1f1;
+  --yab-reported-bg: rgba(255, 255, 255, 0.1);
+  --yab-reported-bg-hover: rgba(255, 255, 255, 0.2);
+  --yab-reported-border: transparent;
+  --yab-reported-border-hover: transparent;
+  --yab-hover-text: #f1f1f1;
+}
+
+#yab-report-container[data-theme="toxic"] {
+  --yab-flagged-bg: rgba(46, 125, 50, 0.15);
+  --yab-flagged-bg-hover: rgba(46, 125, 50, 0.25);
+  --yab-flagged-text: #76ff03;
+  --yab-flagged-border: rgba(118, 255, 3, 0.4);
+  --yab-flagged-border-hover: rgba(118, 255, 3, 0.6);
+  --yab-reported-text: #ffea00;
+  --yab-reported-bg: rgba(255, 234, 0, 0.1);
+  --yab-reported-bg-hover: rgba(255, 234, 0, 0.2);
+  --yab-reported-border: rgba(255, 234, 0, 0.35);
+  --yab-reported-border-hover: rgba(255, 234, 0, 0.55);
+  --yab-hover-text: #76ff03;
+}
+
+/* ---------- Report Container ---------- */
+
+#yab-report-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+  height: 36px;
+  vertical-align: middle;
+}
+
+.yab-report-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid transparent;
+  border-radius: 18px;
+  padding: 6.5px 14.5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s, color 0.15s, border-color 0.15s;
+  font-family: "Roboto", "YouTube Noto", Arial, sans-serif;
+  line-height: 1;
+  color: var(--yt-spec-text-primary, #f1f1f1);
+  background: var(--yt-spec-badge-chip-background, rgba(255, 255, 255, 0.1));
+}
+
+.yab-report-btn:hover {
+  background: var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.2));
+  color: var(--yab-hover-text);
+}
+
+.yab-report-btn.yab-is-ai {
+  color: var(--yab-flagged-text);
+  background: var(--yab-flagged-bg);
+  border-color: var(--yab-flagged-border);
+}
+
+.yab-report-btn.yab-is-ai:hover {
+  background: var(--yab-flagged-bg-hover);
+  border-color: var(--yab-flagged-border-hover);
+}
+
+.yab-report-btn.yab-reported {
+  color: var(--yab-reported-text);
+  background: var(--yab-reported-bg);
+  border-color: var(--yab-reported-border);
+}
+
+.yab-report-btn.yab-reported:hover {
+  background: var(--yab-reported-bg-hover);
+  border-color: var(--yab-reported-border-hover);
+}
+
+.yab-report-btn:active {
+  transform: scale(0.96);
+}
+
+.yab-report-btn svg {
+  flex-shrink: 0;
+}
+
+.yab-btn-label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.yab-count {
+  font-size: 12px;
+  min-width: 12px;
+  text-align: center;
+}
+
+/* ---------- Custom Tooltip ---------- */
+
+.yab-tooltip {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #212121;
+  color: #e8e8e8;
+  font-family: "Roboto", "YouTube Noto", Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+  z-index: 2200;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.yab-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #212121;
+}
+
+.yab-tooltip.yab-tooltip-visible {
+  display: flex;
+  opacity: 1;
+}
+
+.yab-tooltip-heading {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.yab-tooltip-body {
+  color: #b3b3b3;
+}
+
+.yab-tooltip-stats {
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #8ab4f8;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+/* Loading state */
+#yab-report-container.yab-loading .yab-report-btn {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---------- Thumbnail Label ---------- */
+
+.yab-thumb-label {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: "Roboto", "YouTube Noto", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  z-index: 100;
+  pointer-events: none;
+  color: var(--yab-flagged-text, #ff9100);
+  background: var(--yab-flagged-bg, rgba(230, 81, 0, 0.12));
+  border: 1px solid var(--yab-flagged-border, rgba(255, 145, 0, 0.45));
+  backdrop-filter: blur(4px);
+}
+
+.yab-thumb-label svg {
+  flex-shrink: 0;
+}
+
+.yab-thumb-label.yab-thumb-reported {
+  color: var(--yab-reported-text, #f44336);
+  background: var(--yab-reported-bg, rgba(244, 67, 54, 0.15));
+  border-color: var(--yab-reported-border, rgba(244, 67, 54, 0.4));
+}
+
+/* Themed thumb labels via html[data-theme] */
+html[data-theme="neon"] .yab-thumb-label {
+  color: #00e5ff;
+  background: rgba(0, 184, 212, 0.12);
+  border-color: rgba(0, 229, 255, 0.45);
+}
+html[data-theme="neon"] .yab-thumb-label.yab-thumb-reported {
+  color: #ff4081;
+  background: rgba(255, 64, 129, 0.15);
+  border-color: rgba(255, 64, 129, 0.4);
+}
+
+html[data-theme="stealth"] .yab-thumb-label {
+  color: #f1f1f1;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+}
+html[data-theme="stealth"] .yab-thumb-label.yab-thumb-reported {
+  color: #f1f1f1;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: transparent;
+}
+
+html[data-theme="toxic"] .yab-thumb-label {
+  color: #76ff03;
+  background: rgba(46, 125, 50, 0.15);
+  border-color: rgba(118, 255, 3, 0.4);
+}
+html[data-theme="toxic"] .yab-thumb-label.yab-thumb-reported {
+  color: #ffea00;
+  background: rgba(255, 234, 0, 0.1);
+  border-color: rgba(255, 234, 0, 0.35);
+}
+
+/* ---------- Shorts Layout ---------- */
+
+#yab-report-container.yab-shorts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0;
+  margin-top: 16px;
+  height: auto;
+  width: 48px;
+}
+
+.yab-shorts .yab-report-btn {
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+
+.yab-shorts .yab-report-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.yab-shorts .yab-report-btn.yab-is-ai {
+  background: var(--yab-flagged-bg);
+  color: var(--yab-flagged-text);
+}
+
+.yab-shorts .yab-report-btn.yab-reported {
+  background: var(--yab-reported-bg);
+  color: var(--yab-reported-text);
+}
+
+.yab-shorts .yab-btn-label {
+  display: none;
+}
+
+.yab-shorts .yab-count {
+  font-size: 12px;
+  color: #fff;
+  margin-top: 2px;
+}
+
+.yab-shorts .yab-report-btn.yab-is-ai .yab-count {
+  color: var(--yab-flagged-text);
+}
+
+.yab-shorts .yab-report-btn.yab-reported .yab-count {
+  color: var(--yab-reported-text);
+}
+
+.yab-shorts .yab-tooltip {
+  bottom: auto;
+  top: auto;
+  left: auto;
+  right: calc(100% + 12px);
+  transform: none;
+}
+
+.yab-shorts .yab-tooltip::after {
+  display: none;
+}
