@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YouTube AI Detector - Report AI slop",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Crowdsourced AI detection for YouTube. Report AI-generated videos with one click, get notified about AI generated videos.",
   "permissions": ["storage"],
   "background": {
