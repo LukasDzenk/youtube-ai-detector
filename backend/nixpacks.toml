@@ -1,2 +1,5 @@
+[phases.build]
+cmds = ["cargo build --release"]
+
 [start]
-cmd = "./bin/youtube-ai-blocker-backend"
+cmd = "./target/release/youtube-ai-blocker-backend"
