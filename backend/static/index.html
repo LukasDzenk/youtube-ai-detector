@@ -107,8 +107,8 @@
       font-family: 'Space Grotesk', system-ui, sans-serif;
       background: #09090b;
       color: #d4d4d8;
-      font-size: 16px;
-      line-height: 1.65;
+      font-size: 18px;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -125,9 +125,9 @@
     }
 
     .w {
-      max-width: 960px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 40px;
     }
 
     /* --- nav --- */
@@ -141,6 +141,11 @@
       background: rgba(9, 9, 11, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: transform 0.3s ease;
+    }
+
+    nav.nav-hidden {
+      transform: translateY(-100%);
     }
 
     .nav-inner {
@@ -163,7 +168,7 @@
 
     .nav-name {
       font-weight: 600;
-      font-size: 15px;
+      font-size: 16px;
       color: #fafafa;
       letter-spacing: -0.3px;
     }
@@ -175,7 +180,7 @@
     }
 
     .nav-right a {
-      font-size: 14px;
+      font-size: 15px;
       color: #a1a1aa;
       text-decoration: none;
       font-weight: 500;
@@ -204,15 +209,15 @@
 
     .hero-inner {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
       align-items: center;
     }
 
     .hero-eyebrow {
       display: inline-block;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 13px;
+      font-size: 14px;
       color: #f97316;
       font-weight: 500;
       letter-spacing: 0.3px;
@@ -222,7 +227,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(30px, 4.2vw, 46px);
+      font-size: clamp(32px, 4.5vw, 54px);
       font-weight: 700;
       line-height: 1.12;
       letter-spacing: -1.5px;
@@ -236,7 +241,7 @@
     }
 
     .hero-body {
-      font-size: 17px;
+      font-size: 19px;
       color: #a1a1aa;
       line-height: 1.75;
       margin-bottom: 40px;
@@ -288,11 +293,11 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 13px 26px;
+      padding: 14px 30px;
       background: #fafafa;
       color: #09090b;
       border-radius: 8px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       text-decoration: none;
       transition: background 0.15s, transform 0.1s;
@@ -311,12 +316,12 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 13px 26px;
+      padding: 14px 30px;
       background: transparent;
       color: #a1a1aa;
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
       text-decoration: none;
       transition: border-color 0.15s, color 0.15s;
@@ -339,7 +344,7 @@
       display: flex;
       gap: 40px;
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 14px;
+      font-size: 15px;
       color: #a1a1aa;
     }
 
@@ -363,8 +368,19 @@
       margin-bottom: 14px;
     }
 
+    .how > .w {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .how .section-tag,
     .how h2 {
-      font-size: 30px;
+      text-align: center;
+    }
+
+    .how h2 {
+      font-size: 34px;
       font-weight: 700;
       color: #fafafa;
       letter-spacing: -0.8px;
@@ -405,7 +421,7 @@
     }
 
     .how-item h3 {
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 600;
       color: #fafafa;
       margin-bottom: 6px;
@@ -413,10 +429,10 @@
     }
 
     .how-item p {
-      font-size: 15px;
+      font-size: 17px;
       color: #a1a1aa;
       line-height: 1.65;
-      max-width: 480px;
+      max-width: 540px;
     }
 
     /* --- features --- */
@@ -426,7 +442,7 @@
     }
 
     .features h2 {
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 700;
       color: #fafafa;
       letter-spacing: -0.8px;
@@ -449,14 +465,14 @@
     }
 
     .feat h3 {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: #fafafa;
       margin-bottom: 8px;
     }
 
     .feat p {
-      font-size: 15px;
+      font-size: 16px;
       color: #a1a1aa;
       line-height: 1.65;
     }
@@ -518,7 +534,7 @@
     }
 
     .feed h2 {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
       color: #fafafa;
       letter-spacing: -0.6px;
@@ -639,7 +655,7 @@
     }
 
     .send-friend h2 {
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 700;
       color: #fafafa;
       letter-spacing: -0.5px;
@@ -647,7 +663,7 @@
     }
 
     .send-friend .sub {
-      font-size: 15px;
+      font-size: 17px;
       color: #a1a1aa;
       margin-bottom: 24px;
     }
@@ -718,7 +734,7 @@
     }
 
     .faq h2 {
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 700;
       color: #fafafa;
       letter-spacing: -0.8px;
@@ -741,7 +757,7 @@
 
     .faq-item summary {
       padding: 20px 0;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       color: #e4e4e7;
       cursor: pointer;
@@ -770,10 +786,10 @@
 
     .faq-item p {
       padding: 0 0 20px;
-      font-size: 15px;
+      font-size: 17px;
       color: #a1a1aa;
       line-height: 1.7;
-      max-width: 600px;
+      max-width: 680px;
     }
 
     /* --- cta --- */
@@ -783,8 +799,22 @@
       text-align: center;
     }
 
+    .cta-meme {
+      width: 640px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      margin-bottom: 32px;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .cta-meme:hover {
+      opacity: 1;
+    }
+
     .bottom-cta p {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 600;
       color: #fafafa;
       letter-spacing: -0.5px;
@@ -792,7 +822,7 @@
     }
 
     .bottom-cta .sub {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 400;
       color: #a1a1aa;
       margin-bottom: 36px;
@@ -828,12 +858,12 @@
 
     /* --- responsive --- */
 
-    @media (max-width: 680px) {
+    @media (max-width: 768px) {
       .w { padding: 0 20px; }
       .hero-inner { grid-template-columns: 1fr; gap: 36px; }
       .hero-img-wrap { order: 1; }
-      .hero h1 { font-size: 28px; }
-      .hero { padding: 120px 0 64px; }
+      .hero h1 { font-size: 30px; }
+      .hero { padding: 80px 0 48px; }
       .how, .features { padding: 72px 0; }
       .feat-grid { grid-template-columns: 1fr; }
       .stats-inner { flex-direction: column; gap: 10px; }
@@ -847,6 +877,10 @@
       .send-copy { padding: 14px 20px; }
       .feed-scroll { width: 100vw; margin-left: calc(-50vw + 50%); padding: 0 0 8px; }
       .feed-card { flex: 0 0 240px; }
+    }
+
+    @media (max-width: 375px) {
+      .btn-main, .btn-ghost { padding-left: 21px; padding-right: 21px; }
     }
   </style>
 </head>
@@ -873,7 +907,7 @@
 <section class="hero">
   <div class="w hero-inner">
     <div class="hero-text">
-      <div class="hero-eyebrow">// youtube won't label it, so we will</div>
+      <div class="hero-eyebrow">// youtube won't label it, but we can</div>
       <h1>YouTube is filling up with <em>AI&nbsp;slop</em>. Help&nbsp;label&nbsp;it.</h1>
       <p class="hero-body">
         A Chrome extension that lets you flag AI-generated videos.
@@ -1027,7 +1061,7 @@
 
 <section class="bottom-cta">
   <div class="w">
-    <p>Tired of AI slop?</p>
+    <img class="cta-meme" src="/im-tired-boss.webp" alt="I'm tired, boss — The Green Mile meme" width="640" loading="lazy">
     <div class="sub">Same. One click to help fix it.</div>
     <a href="#" data-cws class="btn-main" target="_blank" rel="noopener">
       Add to Chrome — free, open source
@@ -1055,6 +1089,28 @@
   const SHARE_TEXT = 'YouTube is getting flooded with AI slop. This free Chrome extension lets the community flag it — when 3 people report the same video, everyone sees the label. No account needed.';
 
   document.querySelectorAll('a[data-gh]').forEach(a => a.href = GH_URL);
+
+  // Hide nav on scroll down, show on scroll up
+  (() => {
+    const nav = document.querySelector('nav');
+    let lastY = window.scrollY;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y > lastY && y > 80) {
+            nav.classList.add('nav-hidden');
+          } else {
+            nav.classList.remove('nav-hidden');
+          }
+          lastY = y;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  })();
 
   const isMobile = /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent);
 
