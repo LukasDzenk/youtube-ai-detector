@@ -8,17 +8,17 @@ body {
   font-family: "Roboto", "YouTube Noto", Arial, sans-serif;
   background: #0f0f0f;
   color: #e8e8e8;
-  min-width: 300px;
+  min-width: 360px;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ---------- Layout ---------- */
 
 .popup {
-  padding: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 /* ---------- Header ---------- */
@@ -26,23 +26,23 @@ body {
 .header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 2px 0 6px;
+  gap: 12px;
+  padding: 4px 0 8px;
 }
 
 .header-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
   background: rgba(255, 145, 0, 0.1);
   flex-shrink: 0;
 }
 
 .header-title {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #f1f1f1;
   letter-spacing: -0.01em;
@@ -53,90 +53,24 @@ body {
 .card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
-  padding: 12px;
+  border-radius: 12px;
+  padding: 16px;
 }
 
 .card-label {
-  font-size: 10.5px;
+  font-size: 11.5px;
   font-weight: 600;
-  color: #666;
+  color: #777;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  margin-bottom: 10px;
-}
-
-/* ---------- Page Chips ---------- */
-
-.page-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.page-chip {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  padding: 5px 12px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-  user-select: none;
-}
-
-.page-chip:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.page-chip input {
-  display: none;
-}
-
-.page-chip input:checked ~ .chip-text {
-  color: #81c784;
-}
-
-.page-chip input:checked ~ .chip-text::before {
-  opacity: 1;
-  width: 10px;
-  margin-right: 4px;
-}
-
-.page-chip:has(input:checked) {
-  border-color: rgba(129, 199, 132, 0.2);
-  background: rgba(129, 199, 132, 0.08);
-}
-
-.chip-text {
-  font-size: 12px;
-  font-weight: 500;
-  color: #888;
-  display: flex;
-  align-items: center;
-  transition: color 0.15s;
-  line-height: 1;
-}
-
-.chip-text::before {
-  content: "✓";
-  display: inline-block;
-  width: 0;
-  font-size: 10px;
-  color: #66bb6a;
-  opacity: 0;
-  margin-right: 0;
-  overflow: hidden;
-  transition: opacity 0.15s, width 0.15s, margin 0.15s;
+  margin-bottom: 12px;
 }
 
 /* ---------- Theme Picker ---------- */
 
 .theme-picker {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .theme-swatch {
@@ -144,7 +78,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   border: none;
   background: none;
   cursor: pointer;
@@ -158,8 +92,8 @@ body {
 
 .swatch-fill {
   width: 100%;
-  height: 24px;
-  border-radius: 6px;
+  height: 30px;
+  border-radius: 8px;
   box-sizing: border-box;
   border: 2px solid transparent;
   transition: border-color 0.15s;
@@ -170,9 +104,9 @@ body {
 }
 
 .swatch-name {
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 500;
-  color: #555;
+  color: #666;
   letter-spacing: 0.2px;
   transition: color 0.15s;
 }
@@ -213,8 +147,8 @@ body {
 
 .custom-colors {
   display: none;
-  margin-top: 10px;
-  padding-top: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -226,20 +160,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 0;
+  padding: 5px 0;
 }
 
 .color-row label {
-  font-size: 12px;
-  color: #888;
+  font-size: 13px;
+  color: #999;
   font-weight: 400;
 }
 
 .color-row input[type="color"] {
   -webkit-appearance: none;
   appearance: none;
-  width: 36px;
-  height: 22px;
+  width: 40px;
+  height: 26px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   background: none;
@@ -264,7 +198,7 @@ body {
 /* ---------- Footer ---------- */
 
 .footer {
-  padding-top: 4px;
+  padding-top: 6px;
   text-align: center;
 }
 
@@ -272,12 +206,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .footer-link {
-  font-size: 11px;
-  color: #555;
+  font-size: 12.5px;
+  color: #999;
   text-decoration: none;
   transition: color 0.15s;
 }
@@ -287,6 +221,6 @@ body {
 }
 
 .footer-dot {
-  font-size: 10px;
-  color: #333;
+  font-size: 11px;
+  color: #555;
 }

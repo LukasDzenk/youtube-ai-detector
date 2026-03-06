@@ -5,6 +5,7 @@ backend/target/
 # Environment
 .env
 .env.*
+!.env.example
 
 # IDE
 .vscode/

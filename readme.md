@@ -18,7 +18,6 @@ No account. No tracking. Fully open source.
 
 Click the extension icon to open settings:
 
-- **Page toggles** — enable/disable on Home, Search, Watch, Shorts, and Subscriptions independently
 - **Button theme** — choose from 4 presets (Default, Neon, Stealth, Toxic) or pick custom colors
 - **Custom colors** — set your own flagged/reported colors with a color picker
 
@@ -35,7 +34,7 @@ extension/                Chrome extension (Manifest V3, vanilla JS)
 ├── logger.js             Conditional console logging
 ├── content.js            Injects report button on YouTube watch pages
 ├── background.js         Service worker — API calls, caching, install ID
-├── popup.html/js/css     Settings popup (page toggles, themes, colors)
+├── popup.html/js/css     Settings popup (themes, colors)
 ├── styles.css            Injected styles for report button + tooltip
 └── icons/                Extension icons (SVG source + 16/48/128px PNGs)
 

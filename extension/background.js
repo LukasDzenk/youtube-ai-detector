@@ -162,11 +162,6 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   if (msg.type === "getSettings") {
     chrome.storage.local.get(
       {
-        pageHome: true,
-        pageSearch: true,
-        pageWatch: true,
-        pageShorts: true,
-        pageSubs: true,
         colorTheme: "default",
         customFlagged: "#ff9100",
         customReported: "#f44336",

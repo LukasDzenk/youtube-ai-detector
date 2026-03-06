@@ -1,19 +1,3 @@
-const TOGGLE_KEYS = {
-  pageHome: "toggle-home",
-  pageSearch: "toggle-search",
-  pageWatch: "toggle-watch",
-  pageShorts: "toggle-shorts",
-  pageSubs: "toggle-subs",
-};
-
-const TOGGLE_DEFAULTS = {
-  pageHome: true,
-  pageSearch: true,
-  pageWatch: true,
-  pageShorts: true,
-  pageSubs: true,
-};
-
 const COLOR_DEFAULTS = {
   customFlagged: "#ff9100",
   customReported: "#f44336",
@@ -35,11 +19,8 @@ function updateCustomSwatchPreview(flagged, reported) {
 
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get(
-    { ...TOGGLE_DEFAULTS, colorTheme: "default", ...COLOR_DEFAULTS },
+    { colorTheme: "default", ...COLOR_DEFAULTS },
     (values) => {
-      for (const [storageKey, elementId] of Object.entries(TOGGLE_KEYS)) {
-        document.getElementById(elementId).checked = values[storageKey];
-      }
       setActiveThemeSwatch(values.colorTheme);
 
       document.getElementById("color-flagged").value = values.customFlagged;
@@ -47,12 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
       updateCustomSwatchPreview(values.customFlagged, values.customReported);
     }
   );
-
-  for (const [storageKey, elementId] of Object.entries(TOGGLE_KEYS)) {
-    document.getElementById(elementId).addEventListener("change", (e) => {
-      chrome.storage.local.set({ [storageKey]: e.target.checked });
-    });
-  }
 
   document.getElementById("theme-picker").addEventListener("click", (e) => {
     const swatch = e.target.closest(".theme-swatch");
