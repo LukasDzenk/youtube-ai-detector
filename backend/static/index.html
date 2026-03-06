@@ -933,9 +933,9 @@
 
 <div class="stats-bar">
   <div class="w stats-inner">
-    <span><strong id="stat-reports">…</strong> reports filed</span>
-    <span><strong id="stat-videos">…</strong> videos checked</span>
-    <span><strong id="stat-users">…</strong> users</span>
+    <span id="stat-reports-wrap" hidden><strong id="stat-reports">…</strong> reports filed</span>
+    <span id="stat-videos-wrap" hidden><strong id="stat-videos">…</strong> videos checked</span>
+    <span id="stat-users-wrap" hidden><strong id="stat-users">…</strong> users</span>
     <span>MIT licensed · <a href="#" data-gh target="_blank" rel="noopener nofollow" style="color: #a1a1aa; text-decoration: underline; text-underline-offset: 3px;">view code</a></span>
   </div>
 </div>
@@ -1005,7 +1005,7 @@
   </div>
 </section>
 
-<section class="feed">
+<section class="feed" id="feed-section" hidden>
   <div class="w">
     <div class="section-tag">Live · last 48 hours</div>
     <h2>Recently reported videos</h2>
@@ -1177,9 +1177,15 @@
       const r = await fetch('/api/stats');
       if (r.ok) {
         const d = await r.json();
-        document.getElementById('stat-reports').textContent = d.total_reports.toLocaleString();
-        document.getElementById('stat-videos').textContent = d.total_videos.toLocaleString();
-        document.getElementById('stat-users').textContent = d.total_users.toLocaleString();
+        const show = (id, wrapId, val, label) => {
+          if (val >= 10) {
+            document.getElementById(id).textContent = val.toLocaleString();
+            document.getElementById(wrapId).hidden = false;
+          }
+        };
+        show('stat-reports', 'stat-reports-wrap', d.total_reports);
+        show('stat-videos', 'stat-videos-wrap', d.total_videos);
+        show('stat-users', 'stat-users-wrap', d.total_users);
       }
     } catch {}
   })();
@@ -1205,15 +1211,13 @@
   }
 
   (async () => {
+    const section = document.getElementById('feed-section');
     const container = document.getElementById('feed-list');
     try {
       const r = await fetch('/api/recent');
       if (r.ok) {
         const d = await r.json();
-        if (d.reports.length === 0) {
-          container.innerHTML = '<div class="feed-empty">No reports in the last 48 hours — be the first.</div>';
-          return;
-        }
+        if (d.reports.length === 0) return;
         container.innerHTML = d.reports.map(rpt =>
           '<a class="feed-card" href="https://youtube.com/watch?v=' + rpt.video_id + '" target="_blank" rel="noopener nofollow">' +
             '<img class="feed-thumb" src="https://img.youtube.com/vi/' + rpt.video_id + '/mqdefault.jpg" alt="Thumbnail for reported video ' + rpt.video_id + '" loading="lazy" onerror="thumbFallback(this)">' +
@@ -1224,10 +1228,9 @@
             '</div>' +
           '</a>'
         ).join('');
+        section.hidden = false;
       }
-    } catch {
-      container.innerHTML = '<div class="feed-empty">Could not load recent reports.</div>';
-    }
+    } catch {}
   })();
 </script>
 
