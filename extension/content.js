@@ -17,7 +17,7 @@ function loadSettings() {
   yabSetDevMode(YAB_CONFIG.devMode);
   chrome.runtime.sendMessage({ type: "getSettings" }, (resp) => {
     if (resp) {
-      settings = resp;
+      Object.assign(settings, resp);
       yabLog("Settings loaded:", settings);
     }
   });

@@ -3,8 +3,7 @@
   "name": "YouTube AI Detector - Report AI slop",
   "version": "0.1.2",
   "description": "Crowdsourced AI detection for YouTube. Report AI-generated videos with one click, get notified about AI generated videos.",
-  "permissions": ["storage", "activeTab"],
-  "host_permissions": ["*://*.youtube.com/*"],
+  "permissions": ["storage"],
   "background": {
     "service_worker": "background.js"
   },
