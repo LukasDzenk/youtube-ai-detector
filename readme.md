@@ -4,7 +4,7 @@ Crowdsourced AI detection for YouTube. A Chrome extension that lets the communit
 
 No account. No tracking. Fully open source.
 
-**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/is-generated-block-ai-con/chccpjfkgkgogeaaekpgoocmcekajgjk)** · **[Landing page](https://youtube-ai-detector.lukasdzenk.com)**
+**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/imnjokihehlagfjdfofompomoblcepec)** · **[Landing page](https://youtube-ai-detector.lukasdzenk.com)**
 
 ---
 
