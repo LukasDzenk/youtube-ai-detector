@@ -1,6 +1,7 @@
 importScripts("config.js", "logger.js");
 
-const API_BASE = "http://localhost:3000/api";
+// const API_BASE = "http://localhost:3000/api";
+const API_BASE = "https://youtube-ai-detector.lukasdzenk.com/api";
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
 const videoCache = new Map();
