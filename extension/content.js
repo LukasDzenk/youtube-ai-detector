@@ -86,9 +86,18 @@ function applyTheme(theme) {
 function getVideoId() {
   try {
     const url = new URL(window.location.href);
-    if (!url.pathname.startsWith("/watch")) return null;
-    return url.searchParams.get("v");
-  } catch {
+    const pathname = url.pathname;
+
+    if (pathname.startsWith("/watch")) {
+      return url.searchParams.get("v");
+    }
+
+    if (pathname.startsWith("/shorts/")) {
+      return pathname.split("/")[2];
+    }
+
+    return null;
+  } catch (err) {
     return null;
   }
 }
@@ -98,28 +107,41 @@ function getVideoId() {
 // ---------------------------------------------------------------------------
 
 const isMobile = location.hostname === "m.youtube.com";
-
 function getButtons() {
   try {
     if (isMobile) {
-      return (
-        document.querySelector(
-          ".slim-video-action-bar-actions .segmented-buttons"
-        ) || document.querySelector(".slim-video-action-bar-actions")
-      );
+      return document.querySelector(".slim-video-action-bar-actions .segmented-buttons") || 
+             document.querySelector(".slim-video-action-bar-actions");
     }
+
+    if (location.pathname.startsWith("/shorts/")) {
+      const activeReel = Array.from(document.querySelectorAll('ytd-reel-video-renderer')).find(reel => 
+        reel.hasAttribute('is-active') || reel.hasAttribute('overlay-applied')
+      );
+      
+      if (activeReel) {
+        return activeReel.querySelector("#button-bar") || 
+               activeReel.querySelector("reel-action-bar-view-model");
+      }
+      
+      return document.querySelector("#button-bar");
+      
+      const allActionBars = document.querySelectorAll("#actions.ytd-shorts, #extra-buttons.ytd-shorts");
+      for (const bar of allActionBars) {
+        if (bar.offsetParent !== null) return bar;
+      }
+      
+      return null;
+    }
+
     if (document.getElementById("menu-container")?.offsetParent === null) {
       return (
         document.querySelector("ytd-menu-renderer.ytd-watch-metadata > div") ||
-        document.querySelector(
-          "ytd-menu-renderer.ytd-video-primary-info-renderer > div"
-        )
+        document.querySelector("ytd-menu-renderer.ytd-video-primary-info-renderer > div")
       );
     }
-    return document
-      .getElementById("menu-container")
-      ?.querySelector("#top-level-buttons-computed");
-  } catch {
+    return document.getElementById("menu-container")?.querySelector("#top-level-buttons-computed");
+  } catch (e) {
     return null;
   }
 }
@@ -305,11 +327,23 @@ function injectReportUI(info) {
     }
 
     const reportUI = createReportUI(info);
-    buttons.parentElement.insertBefore(reportUI, buttons.nextSibling);
-
+    
+    if (location.pathname.startsWith("/shorts/")) {
+      const targetContainer = buttons.querySelector("reel-action-bar-view-model") || buttons;
+      
+      const pivot = targetContainer.querySelector("pivot-button-view-model");
+      if (pivot) {
+        targetContainer.insertBefore(reportUI, pivot);
+      } else {
+        targetContainer.appendChild(reportUI);
+      }
+    } else {
+      buttons.parentElement.insertBefore(reportUI, buttons.nextSibling);
+    }
+    
     applyTheme(settings.colorTheme);
-  } catch {
-    yabWarn("Failed to inject report UI");
+  } catch (e) {
+    yabWarn("Failed to inject report UI:", e);
   }
 }
 
@@ -357,7 +391,8 @@ function setupSmartimationObserver() {
 
 async function onVideoPage() {
   const videoId = getVideoId();
-  if (!videoId || videoId === currentVideoId) return;
+  if (!videoId) return;
+  if (videoId === currentVideoId && document.getElementById(YAB_REPORT_CONTAINER_ID)) return;
 
   yabLog("Watch page:", videoId);
   currentVideoId = videoId;
@@ -385,14 +420,16 @@ function isVideoLoaded() {
     if (!videoId) return false;
 
     if (isMobile) {
-      return (
-        document.getElementById("player")?.getAttribute("loading") === "false"
-      );
+      return document.getElementById("player")?.getAttribute("loading") === "false";
+    }
+
+    if (location.pathname.startsWith("/shorts/")) {
+       return !!document.querySelector('ytd-reel-video-renderer[is-active] video') || 
+              !!document.querySelector('ytd-reel-video-renderer video');
     }
 
     return (
-      document.querySelector(`ytd-watch-grid[video-id='${videoId}']`) !==
-        null ||
+      document.querySelector(`ytd-watch-grid[video-id='${videoId}']`) !== null ||
       document.querySelector(`ytd-watch-flexy[video-id='${videoId}']`) !== null
     );
   } catch {
@@ -402,10 +439,19 @@ function isVideoLoaded() {
 
 function checkAndInit() {
   try {
-    const isWatchPage = !!getVideoId();
+    const vidId = getVideoId();
     const buttons = getButtons();
+    const loaded = isVideoLoaded();
 
-    if (isWatchPage && buttons?.offsetParent && isVideoLoaded()) {
+    if (window.location.pathname.includes("shorts")) {
+       console.log("[YAB Debug] ID:", vidId, "| Buttons Found:", !!buttons, "| Loaded:", loaded);
+    }
+
+    const buttonsVisible = window.location.pathname.startsWith("/shorts/") 
+          ? !!buttons 
+          : !!buttons?.offsetParent;
+
+    if (vidId && buttonsVisible && loaded) {
       if (preNavigateButtons !== buttons) {
         preNavigateButtons = buttons;
         onVideoPage();
@@ -413,8 +459,7 @@ function checkAndInit() {
         onVideoPage();
       }
     }
-  } catch {
-    // DOM not ready yet
+  } catch (e) {
   }
 }
 
@@ -422,23 +467,32 @@ let initTimer = null;
 
 function onNavigate() {
   yabLog("Navigation detected:", location.pathname);
+  const oldUI = document.getElementById(YAB_REPORT_CONTAINER_ID);
+  if (oldUI) oldUI.remove();
+
   currentVideoId = null;
   preNavigateButtons = null;
+  
   if (initTimer) clearInterval(initTimer);
+
   initTimer = setInterval(() => {
+    const vidId = getVideoId();
     checkAndInit();
-    if (getVideoId() && document.getElementById(YAB_REPORT_CONTAINER_ID)) {
+
+    const currentUI = document.getElementById(YAB_REPORT_CONTAINER_ID);
+    if (vidId && currentUI && currentVideoId === vidId) {
       clearInterval(initTimer);
       initTimer = null;
+      yabLog("Timer stopped: UI injected for", vidId);
     }
-  }, 150);
+  }, 200);
 
   setTimeout(() => {
     if (initTimer) {
       clearInterval(initTimer);
       initTimer = null;
     }
-  }, 15000);
+  }, 10000);
 }
 
 (function init() {

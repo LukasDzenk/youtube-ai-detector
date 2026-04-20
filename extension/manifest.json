@@ -1,18 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "YouTube AI Detector - Report AI slop",
-  "version": "0.1.4",
-  "description": "Crowdsourced AI detection for YouTube. Report AI-generated videos with one click, get notified about AI generated videos.",
-  "permissions": ["storage"],
+  "name": "YouTube AI Detector - Report AI slop SHORTS VER.",
+  "version": "0.1.4.1",
+  "description": "Crowdsourced AI detection for YouTube. Report AI-generated videos with one click, get notified about AI generated videos. Now with support for shorts brought to you by TheEpicCat!",
+  "permissions": [ "storage" ],
+  "host_permissions": [ "https://youtube-ai-detector.lukasdzenk.com/*" ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
-      "exclude_matches": ["*://music.youtube.com/*"],
-      "js": ["config.js", "logger.js", "content.js"],
-      "css": ["styles.css"],
+      "matches": [ "*://*.youtube.com/*" ],
+      "exclude_matches": [ "*://music.youtube.com/*" ],
+      "js": [ "config.js", "logger.js", "content.js" ],
+      "css": [ "styles.css" ],
       "run_at": "document_end"
     }
   ],
