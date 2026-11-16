@@ -20,7 +20,8 @@ RUN cargo build --release --bin youtube-ai-blocker-backend
 
 # ── Stage 3: minimal runtime image ────────────────────────────────
 FROM debian:bookworm-slim AS runtime
-RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+# curl is used by the container health check (GET /api/health)
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
